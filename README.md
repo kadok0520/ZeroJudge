@@ -1,4 +1,4 @@
-# ZeroJudge
+# ZeroJudge 高中生程式解題系統
 ZeroJudge, An Online Judge System For Beginners
 
 # Official site
