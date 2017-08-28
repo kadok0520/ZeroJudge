@@ -14,5 +14,12 @@ https://sites.google.com/zerojudge.tw/vms
 http://niucp03.blogspot.tw/2011/05/debian-zerojudge.html
 
 # Step
+1. pull image
+
+
+2. run
+
+
+3.
 
 
