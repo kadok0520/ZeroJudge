@@ -17,8 +17,8 @@ http://niucp03.blogspot.tw/2011/05/debian-zerojudge.html
 1. pull image
 
 
-2. run
-
+2. init mysql
+docker run --name mysql -e MYSQL_ROOT_PASSWORD=你的密碼 -p 3306:3306 -d mysql
 
 3.
 
