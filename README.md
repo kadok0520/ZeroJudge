@@ -13,6 +13,7 @@ https://sites.google.com/zerojudge.tw/vms/
 # Reference
 http://niucp03.blogspot.tw/2011/05/debian-zerojudge.html
 https://sites.google.com/zerojudge.tw/vms/geek-only/
+https://wiki.debian.org/LXC/
 
 # Step
 1. pull image
