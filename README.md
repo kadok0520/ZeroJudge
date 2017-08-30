@@ -5,7 +5,7 @@ ZeroJudge, An Online Judge System For Beginners
 https://zerojudge.tw/
 
 # ZeroJudge 虛擬機計畫 You can download .ova here
-https://sites.google.com/zerojudge.tw/vms
+https://sites.google.com/zerojudge.tw/vms/
 
 # Dockerhub
 尚在研發中
