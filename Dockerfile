@@ -1,10 +1,14 @@
 FROM tomcat
 MAINTAINER Hong-Da, Ke 
 
-RUN mkdir -p /root/pxt-microbit \
-    && cd /root/pxt-microbit \
-    && npm install -g pxt \
-    && pxt target microbit
+COPY ROOT.war /var/lib/tomcat8/webapps/
+COPY ZeroJudge_Server.war /var/lib/tomcat8/webapps/
+COPY zerojudge.sql /root
+
+RUN apt-get update \
+    && apt-get install lxc libvirt-bin bridge-utils cgroup-bin \
+    &&  \
+    && 
 
 EXPOSE 80 3233
 
