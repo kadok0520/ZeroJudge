@@ -11,6 +11,7 @@ COPY ZeroJudge_Server.war /usr/local/tomcat/webapps/
 COPY ZeroJudge_CONSOLE /ZeroJudge_CONSOLE
 COPY JudgeServer_CONSOLE /JudgeServer_CONSOLE
 COPY zerojudge.sql /root
+COPY docker-entrypoint.sh /usr/local/bin
 
 RUN apk add --no-cache --virtual .native-build-deps git rsync apache-ant gcc g++ python3 mysql-client \
     && cd /tmp \
