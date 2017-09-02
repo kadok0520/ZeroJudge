@@ -2,6 +2,7 @@ FROM tomcat:alpine
 
 ENV FPC_VERSION 3.0.2 
 ENV FPC_ARCH x86_64-linux
+ENV DB_HOST mysql_server
 ENV DB_USER root
 ENV DB_PASSWORD password
 
@@ -10,7 +11,7 @@ COPY ZeroJudge_Server.war /usr/local/tomcat/webapps/
 COPY ZeroJudge_CONSOLE /ZeroJudge_CONSOLE
 COPY JudgeServer_CONSOLE /JudgeServer_CONSOLE
 COPY zerojudge.sql /root
-COPY docker-entrypoint.sh /sbin
+COPY docker-entrypoint.sh /usr/local/bin
 
 RUN apk add --no-cache --virtual .native-build-deps git rsync apache-ant gcc g++ python3 mysql-client \
     && cd /tmp \
@@ -28,7 +29,7 @@ RUN apk add --no-cache --virtual .native-build-deps git rsync apache-ant gcc g++
         -not -name 'rtl-objpas' \
         -exec rm -r {} \; \
     && rm -r "/lib64" "/tmp/"* \
-    && chmod -R 755 /ZeroJudge_CONSOLE /JudgeServer_CONSOLE /sbin/docker-entrypoint.sh
+    && chmod -R 755 /ZeroJudge_CONSOLE /JudgeServer_CONSOLE /usr/local/bin/docker-entrypoint.sh
 
 EXPOSE 80 8080
 CMD ["docker-entrypoint.sh"]
