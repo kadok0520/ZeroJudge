@@ -4,7 +4,8 @@ ENV FPC_VERSION="3.0.2" \
     FPC_ARCH="x86_64-linux"
 
 RUN apk add --no-cache --virtual .native-build-deps sudo git rsync apache-ant gcc g++ python3 mysql-client \
-    && adduser -D -u 1000 zero \
+    && adduser -G sudo -D -u 1000 zero \
+    && echo 'zero ALL=(ALL) ALL' >> /etc/sudoers \
     && cd /tmp \
     && wget "ftp://ftp.hu.freepascal.org/pub/fpc/dist/${FPC_VERSION}/${FPC_ARCH}/fpc-${FPC_VERSION}.${FPC_ARCH}.tar" -O fpc.tar \
     && tar xf "fpc.tar" \
