@@ -28,7 +28,7 @@ RUN apk add --no-cache --virtual .native-build-deps git rsync apache-ant gcc g++
         -not -name 'rtl-objpas' \
         -exec rm -r {} \; \
     && rm -r "/lib64" "/tmp/"* \
-    && chmod -R 755 /ZeroJudge_CONSOLE /JudgeServer_CONSOLE
+    && chmod -R 755 /ZeroJudge_CONSOLE /JudgeServer_CONSOLE /bin/docker-entrypoint.sh
 
 EXPOSE 80 8080
 CMD ["docker-entrypoint.sh"]
