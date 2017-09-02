@@ -27,6 +27,8 @@ RUN apk add --no-cache --virtual .native-build-deps sudo git rsync apache-ant gc
 
 COPY ROOT.war /usr/local/tomcat/webapps/
 COPY ZeroJudge_Server.war /usr/local/tomcat/webapps/
+COPY ZeroJudge_CONSOLE /
+COPY JudgeServer_CONSOLE /
 COPY zerojudge.sql /root
 
 EXPOSE 80 8080
