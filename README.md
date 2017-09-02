@@ -11,7 +11,7 @@ docker run --name mysql -e MYSQL_ROOT_PASSWORD=db.passwd -d mysql
 
 Then, You can run ZeroJudge and link to MySQL container like below:
 
-docker run --name zero --link mysql:db -e DB_PASSWORD=db.passwd -p 80:80 -p 8080:8080 -d leejoneshane/zerojudge
+docker run --name zero -e DB_HOST=mysql.ip.maybe.172.17.0.2 -e DB_PASSWORD=db.passwd -p 80:80 -p 8080:8080 -d leejoneshane/zerojudge
 
 Now, You can link the ZeroJudge System by http://localhost and http://localhost/ZeroJudge_Server/, Please login with user:zero password:!@#$zerojudge to manage your local ZeroJudge server.
 
