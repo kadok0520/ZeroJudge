@@ -2,7 +2,6 @@ FROM tomcat:alpine
 
 ENV FPC_VERSION 3.0.2 
 ENV FPC_ARCH x86_64-linux
-ENV DB_HOST mysql_server
 ENV DB_USER root
 ENV DB_PASSWORD password
 
