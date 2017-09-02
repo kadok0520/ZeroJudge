@@ -6,8 +6,6 @@ ENV DB_HOST mysql_server
 ENV DB_USER root
 ENV DB_PASSWORD password
 
-COPY ROOT /usr/local/tomcat/webapps/ROOT
-COPY ZeroJudge_Server /usr/local/tomcat/webapps/ZeroJudge_Server
 COPY ZeroJudge_CONSOLE /ZeroJudge_CONSOLE
 COPY JudgeServer_CONSOLE /JudgeServer_CONSOLE
 COPY zerojudge.sql /root
@@ -28,8 +26,11 @@ RUN apk add --no-cache --virtual .native-build-deps git rsync apache-ant gcc g++
         -not -name 'rtl-console' \
         -not -name 'rtl-objpas' \
         -exec rm -r {} \; \
-    && rm -r "/lib64" "/tmp/"* \
+    && rm -r "/lib64" "/tmp/"* /usr/local/tomcat/webapps/* \
     && chmod -R 755 /ZeroJudge_CONSOLE /JudgeServer_CONSOLE /usr/local/bin/docker-entrypoint.sh
+
+COPY ROOT /usr/local/tomcat/webapps/ROOT
+COPY ZeroJudge_Server /usr/local/tomcat/webapps/ZeroJudge_Server
 
 EXPOSE 80 8080
 CMD ["docker-entrypoint.sh"]
