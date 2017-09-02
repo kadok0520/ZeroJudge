@@ -6,9 +6,13 @@ ENV DB_HOST mysql_server
 ENV DB_USER root
 ENV DB_PASSWORD password
 
-RUN apk add --no-cache --virtual .native-build-deps sudo git rsync apache-ant gcc g++ python3 mysql-client \
-    && adduser -G sudo -D -u 1000 zero \
-    && echo 'zero ALL=(ALL) ALL' >> /etc/sudoers \
+COPY ROOT.war /usr/local/tomcat/webapps/
+COPY ZeroJudge_Server.war /usr/local/tomcat/webapps/
+COPY ZeroJudge_CONSOLE /
+COPY JudgeServer_CONSOLE /
+COPY zerojudge.sql /root
+
+RUN apk add --no-cache --virtual .native-build-deps git rsync apache-ant gcc g++ python3 mysql-client \
     && cd /tmp \
     && wget "ftp://ftp.hu.freepascal.org/pub/fpc/dist/${FPC_VERSION}/${FPC_ARCH}/fpc-${FPC_VERSION}.${FPC_ARCH}.tar" -O fpc.tar \
     && tar xf "fpc.tar" \
@@ -23,13 +27,8 @@ RUN apk add --no-cache --virtual .native-build-deps sudo git rsync apache-ant gc
         -not -name 'rtl-console' \
         -not -name 'rtl-objpas' \
         -exec rm -r {} \; \
-    && rm -r "/lib64" "/tmp/"*
-
-COPY ROOT.war /usr/local/tomcat/webapps/
-COPY ZeroJudge_Server.war /usr/local/tomcat/webapps/
-COPY ZeroJudge_CONSOLE /
-COPY JudgeServer_CONSOLE /
-COPY zerojudge.sql /root
+    && rm -r "/lib64" "/tmp/"* \
+    && chmod -R 755 /ZeroJudge_CONSOLE /JudgeServer_CONSOLE
 
 EXPOSE 80 8080
 CMD ["docker-entrypoint.sh"]
