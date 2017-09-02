@@ -1,7 +1,10 @@
 FROM tomcat:alpine
 
-ENV FPC_VERSION="3.0.2" \
-    FPC_ARCH="x86_64-linux"
+ENV FPC_VERSION 3.0.2 
+ENV FPC_ARCH x86_64-linux
+ENV DB_HOST mysql_server
+ENV DB_USER root
+ENV DB_PASSWORD password
 
 RUN apk add --no-cache --virtual .native-build-deps sudo git rsync apache-ant gcc g++ python3 mysql-client \
     && adduser -G sudo -D -u 1000 zero \
@@ -27,3 +30,4 @@ COPY ZeroJudge_Server.war /usr/local/tomcat/webapps/
 COPY zerojudge.sql /root
 
 EXPOSE 80 8080
+CMD ["docker-entrypoint.sh"]
