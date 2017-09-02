@@ -10,7 +10,7 @@ COPY ZeroJudge_Server.war /usr/local/tomcat/webapps/
 COPY ZeroJudge_CONSOLE /ZeroJudge_CONSOLE
 COPY JudgeServer_CONSOLE /JudgeServer_CONSOLE
 COPY zerojudge.sql /root
-COPY docker-entrypoint.sh /bin
+COPY docker-entrypoint.sh /sbin
 
 RUN apk add --no-cache --virtual .native-build-deps git rsync apache-ant gcc g++ python3 mysql-client \
     && cd /tmp \
@@ -28,7 +28,7 @@ RUN apk add --no-cache --virtual .native-build-deps git rsync apache-ant gcc g++
         -not -name 'rtl-objpas' \
         -exec rm -r {} \; \
     && rm -r "/lib64" "/tmp/"* \
-    && chmod -R 755 /ZeroJudge_CONSOLE /JudgeServer_CONSOLE /bin/docker-entrypoint.sh
+    && chmod -R 755 /ZeroJudge_CONSOLE /JudgeServer_CONSOLE /sbin/docker-entrypoint.sh
 
 EXPOSE 80 8080
 CMD ["docker-entrypoint.sh"]
