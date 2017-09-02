@@ -1,22 +1,28 @@
-FROM tomcat
-MAINTAINER Hong-Da, Ke 
+FROM tomcat:alpine
 
-COPY ROOT.war /var/lib/tomcat8/webapps/
-COPY ZeroJudge_Server.war /var/lib/tomcat8/webapps/
+ENV FPC_VERSION="3.0.2" \
+    FPC_ARCH="x86_64-linux"
 
+RUN apk add --no-cache --virtual .native-build-deps sudo git rsync apache-ant gcc g++ python3 mysql-client \
+    && adduser -D -u 1000 zero \
+    && cd /tmp \
+    && wget "ftp://ftp.hu.freepascal.org/pub/fpc/dist/${FPC_VERSION}/${FPC_ARCH}/fpc-${FPC_VERSION}.${FPC_ARCH}.tar" -O fpc.tar \
+    && tar xf "fpc.tar" \
+    && cd "fpc-${FPC_VERSION}.${FPC_ARCH}" \
+    && rm demo* doc* \
+    && mkdir /lib64 \
+    && ln -s /lib/ld-musl-x86_64.so.1 /lib64/ld-linux-x86-64.so.2 \
+    && echo -e '/usr\nN\nN\nN\n' | sh ./install.sh \
+    && find "/usr/lib/fpc/${FPC_VERSION}/units/${FPC_ARCH}/" -type d -mindepth 1 -maxdepth 1 \
+        -not -name 'fcl-base' \
+        -not -name 'rtl' \
+        -not -name 'rtl-console' \
+        -not -name 'rtl-objpas' \
+        -exec rm -r {} \; \
+    && rm -r "/lib64" "/tmp/"*
 
-RUN apt-get update \
-    && apt-get install lxc libvirt-bin bridge-utils cgroup-bin \
-    &&  \
-    && 
-
+COPY ROOT.war /usr/local/tomcat/webapps/
+COPY ZeroJudge_Server.war /usr/local/tomcat/webapps/
 COPY zerojudge.sql /root
 
-RUN mysql -u root -p zerojudge < /root/zerojudge.sql 
-
-
 EXPOSE 80 8080
-
-WORKDIR /root/pxt-microbit
-
-ENTRYPOINT ["pxt", "serve", "-h", "0.0.0.0", "-p", "80","--noBrowser"]
