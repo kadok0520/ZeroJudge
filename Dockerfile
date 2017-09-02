@@ -6,8 +6,8 @@ ENV DB_HOST mysql_server
 ENV DB_USER root
 ENV DB_PASSWORD password
 
-COPY ROOT.war /usr/local/tomcat/webapps/
-COPY ZeroJudge_Server.war /usr/local/tomcat/webapps/
+COPY ROOT /usr/local/tomcat/webapps/ROOT
+COPY ZeroJudge_Server /usr/local/tomcat/webapps/ZeroJudge_Server
 COPY ZeroJudge_CONSOLE /ZeroJudge_CONSOLE
 COPY JudgeServer_CONSOLE /JudgeServer_CONSOLE
 COPY zerojudge.sql /root
