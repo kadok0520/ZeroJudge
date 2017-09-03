@@ -3,6 +3,9 @@ set -euo pipefail
 
 if [[ "${DB_HOST}" != "mysql_server" ]]; then
   sed -ri \
+      -e "s/port=\"8080\"/port=\"80\"/g" \
+      /usr/local/tomcat/conf/server.xml
+  sed -ri \
       -e "s/password=\"(.*)\" removeAbandoned=/password=\"${DB_PASSWORD}\" removeAbandoned=/g" \
       -e "s/jdbc:mysql:\/\/(.*):3306/jdbc:mysql:\/\/${DB_HOST}:3306/g" \
       -e "s/connectionPassword=\"(.*)\" connection/connectionPassword=\"${DB_PASSWORD}\" connection/g" \
