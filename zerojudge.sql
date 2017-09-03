@@ -11,11 +11,6 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
 -- 資料庫： `zerojudge`
 --
@@ -84,7 +79,7 @@ CREATE TABLE `appconfigs` (
 --
 
 INSERT INTO `appconfigs` (`id`, `title`, `header`, `pageSize`, `manager_ip`, `rankingmode_HSIC`, `EnableMailer`, `CandidateManager`, `systemMode`, `systemModeContestid`, `consolePath`, `system_closed_message`, `problemid_prefix`, `problemtabs`, `serverUrl`, `cryptKey`, `rsyncAccount`, `system_monitor_ip`, `competition_mode`, `rankingmode_NPSC`, `rankingmode_CSAPC`, `SystemMonitorAccount`, `titleImage`, `logo`, `threshold`, `Locales`, `schemas`, `exclusiveSchoolids`, `cachedUser`, `cachedContest`, `cachedProblem`, `rejudgeable`, `allowedIP`, `judgeQueueSize`, `maxConnectionByIP`, `maxCodeLength`, `maxTestdata`, `SearchEngines`, `bannedIPSet`, `managers`, `banners`, `SystemMail`, `SystemMailPassword`, `JVM`, `last_solutionid_for_RecountProblemidset`, `httpscrt`, `client_id`, `client_secret`, `redirect_uri`, `timestamp`) VALUES
-(1, 'A Title for Your Site', 'A Header For Your Site', 20, '[192.168.1.1/24]', '', 0, '', 'TRAINING_MODE', 0, '/ZeroJudge_CONSOLE', 'System is now closed!', 'a', '[{"orderby":"problemid ASC","descript":"基本語法題目","name":"基礎題庫","id":"BASIC"}]', 'http://127.0.0.1:8080/ZeroJudge_Server/', 'ZZEERROO', 'zero', '', '', '', '', '', '', '', 3, '["en_US","zh_TW","zh_CN"]', '[]', '[]', 0, 0, 0, 0, '[192.168.1.1/0]', 100, 1000, 10000, 10000000, '[66.249.0.0/16, 72.30.0.0/16, 74.6.0.0/16]', '[]', '[]', '[{"percent":100,"content":"banner1"},{"percent":0,"content":"banner2"},{"percent":0,"content":"banner3"}]', 'sysop@yourdomain', '', 1000, 0, '', '', '', '', '2017-08-22 16:46:37');
+(1, 'A Title for Your Site', 'A Header For Your Site', 20, '[0.0.0.0/0]', '', 0, '', 'TRAINING_MODE', 0, '/ZeroJudge_CONSOLE', 'System is now closed!', 'a', '[{"orderby":"problemid ASC","descript":"基本語法題目","name":"基礎題庫","id":"BASIC"}]', 'http://127.0.0.1:8080/ZeroJudge_Server/', 'ZZEERROO', 'zero', '', '', '', '', '', '', '', 3, '["en_US","zh_TW","zh_CN"]', '[]', '[]', 0, 0, 0, 0, '[192.168.1.1/0]', 100, 1000, 10000, 10000000, '[66.249.0.0/16, 72.30.0.0/16, 74.6.0.0/16]', '[]', '[]', '[{"percent":100,"content":"banner1"},{"percent":0,"content":"banner2"},{"percent":0,"content":"banner3"}]', 'sysop@yourdomain', '', 1000, 0, '', '', '', '', '2017-08-22 16:46:37');
 
 -- --------------------------------------------------------
 
@@ -245,29 +240,6 @@ CREATE TABLE `logs` (
   `stacktrace` text NOT NULL,
   `timestamp` datetime NOT NULL DEFAULT '2006-06-08 00:00:00'
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
-
---
--- 資料表的匯出資料 `logs`
---
-
-INSERT INTO `logs` (`id`, `method`, `uri`, `session_account`, `ipaddr`, `tabid`, `title`, `message`, `stacktrace`, `timestamp`) VALUES
-(1, 'GET', '/ZeroJudge_Server//api/', '', '[127.0.0.1]', 'ERRORPAGE', '網頁錯誤編號：404(/ZeroJudge_Server//api/)', '/ZeroJudge_Server//api/', '', '2017-08-23 00:47:09'),
-(2, 'GET', '/ZeroJudge_Server//api/', '', '[127.0.0.1]', 'ERRORPAGE', '網頁錯誤編號：404(/ZeroJudge_Server//api/)', '/ZeroJudge_Server//api/', '', '2017-08-23 00:48:08'),
-(3, '', '', '', '[]', 'WATCHING', 'serverConfig 重新讀取成功！', 'serverConfig={"servername":"ZeroJudgeServer","isNull":false,"testdataPath":"/JudgeServer_CONSOLE/Testdata","specialPath":"/JudgeServer_CONSOLE/Special","rsyncAccount":"zero","binPath":"/JudgeServer_CONSOLE/Bin","executablePath":"/JudgeServer_CONSOLE/Exec', '', '2017-08-23 00:48:30'),
-(4, '', '', '', '[]', 'RUNCOMMAND', 'RunCommand=sudo -u zero rsync -av --delete -e "ssh -p 22" /ZeroJudge_CONSOLE/Testdata/a001 /JudgeServer_CONSOLE/Testdata', 'RunCommand=sudo -u zero rsync -av --delete -e "ssh -p 22" /ZeroJudge_CONSOLE/Testdata/a001 /JudgeServer_CONSOLE/Testdata(92ms)\noutString=null\nerrString=null', '', '2017-08-23 00:48:32'),
-(5, '', '', '', '[]', 'WATCHING', 'serverConfig 重新讀取成功！', 'serverConfig={"testdataPath":"/JudgeServer_CONSOLE/Testdata","compilers":[{"cmd_namemangling":"nm -A $S/$C.exe","enable":"C","cmd_compile":"gcc $S/$C.c -std=c11 -lm -lcrypt -O2 -pipe -DONLINE_JUDGE -o $S/$C.exe","cmd_execute":"$S/$C.exe < $T > $S/$C.out"', '', '2017-08-27 21:55:01'),
-(6, '', '', '', '[]', 'RUNCOMMAND', 'RunCommand=uptime | egrep -o \'load average[s]*: [0-9,\\. ]+\' | awk -F\',\' \'{print $1$2$3}\' | awk -F\' \' \'{print $3,$4,$5}\'', 'RunCommand=uptime | egrep -o \'load average[s]*: [0-9,\\. ]+\' | awk -F\',\' \'{print $1$2$3}\' | awk -F\' \' \'{print $3,$4,$5}\'(164ms)\noutString=null\nerrString=null', '', '2017-08-27 22:04:45'),
-(7, '', '', '', '[]', 'RUNCOMMAND', 'RunCommand=uptime | egrep -o \'load average[s]*: [0-9,\\. ]+\' | awk -F\',\' \'{print $1$2$3}\' | awk -F\' \' \'{print $3,$4,$5}\'', 'RunCommand=uptime | egrep -o \'load average[s]*: [0-9,\\. ]+\' | awk -F\',\' \'{print $1$2$3}\' | awk -F\' \' \'{print $3,$4,$5}\'(1824ms)\noutString=null\nerrString=null', '', '2017-08-28 09:46:12'),
-(8, '', '', '', '[]', 'RUNCOMMAND', 'RunCommand=uptime | egrep -o \'load average[s]*: [0-9,\\. ]+\' | awk -F\',\' \'{print $1$2$3}\' | awk -F\' \' \'{print $3,$4,$5}\'', 'RunCommand=uptime | egrep -o \'load average[s]*: [0-9,\\. ]+\' | awk -F\',\' \'{print $1$2$3}\' | awk -F\' \' \'{print $3,$4,$5}\'(21ms)\noutString=null\nerrString=null', '', '2017-08-28 09:56:10'),
-(9, '', '', '', '[]', 'RUNCOMMAND', 'RunCommand=uptime | egrep -o \'load average[s]*: [0-9,\\. ]+\' | awk -F\',\' \'{print $1$2$3}\' | awk -F\' \' \'{print $3,$4,$5}\'', 'RunCommand=uptime | egrep -o \'load average[s]*: [0-9,\\. ]+\' | awk -F\',\' \'{print $1$2$3}\' | awk -F\' \' \'{print $3,$4,$5}\'(39ms)\noutString=null\nerrString=null', '', '2017-08-28 10:06:10'),
-(10, '', '', '', '[]', 'RUNCOMMAND', 'RunCommand=uptime | egrep -o \'load average[s]*: [0-9,\\. ]+\' | awk -F\',\' \'{print $1$2$3}\' | awk -F\' \' \'{print $3,$4,$5}\'', 'RunCommand=uptime | egrep -o \'load average[s]*: [0-9,\\. ]+\' | awk -F\',\' \'{print $1$2$3}\' | awk -F\' \' \'{print $3,$4,$5}\'(182ms)\noutString=null\nerrString=null', '', '2017-08-28 22:22:57'),
-(11, '', '', '', '[]', 'RUNCOMMAND', 'RunCommand=uptime | egrep -o \'load average[s]*: [0-9,\\. ]+\' | awk -F\',\' \'{print $1$2$3}\' | awk -F\' \' \'{print $3,$4,$5}\'', 'RunCommand=uptime | egrep -o \'load average[s]*: [0-9,\\. ]+\' | awk -F\',\' \'{print $1$2$3}\' | awk -F\' \' \'{print $3,$4,$5}\'(8ms)\noutString=null\nerrString=null', '', '2017-08-28 22:32:57'),
-(12, '', '', '', '[]', 'RUNCOMMAND', 'RunCommand=uptime | egrep -o \'load average[s]*: [0-9,\\. ]+\' | awk -F\',\' \'{print $1$2$3}\' | awk -F\' \' \'{print $3,$4,$5}\'', 'RunCommand=uptime | egrep -o \'load average[s]*: [0-9,\\. ]+\' | awk -F\',\' \'{print $1$2$3}\' | awk -F\' \' \'{print $3,$4,$5}\'(61ms)\noutString=null\nerrString=null', '', '2017-08-30 18:19:25'),
-(13, 'GET', '/phpmyadmin', '', '[127.0.0.1]', 'ERRORPAGE', '網頁錯誤編號：404(/phpmyadmin)', '/phpmyadmin', '', '2017-08-30 18:20:03'),
-(14, 'GET', '/phpmyadmin', '', '[127.0.0.1]', 'ERRORPAGE', '網頁錯誤編號：404(/phpmyadmin)', '/phpmyadmin', '', '2017-08-30 18:23:23'),
-(15, '', '', '', '[]', 'RUNCOMMAND', 'RunCommand=uptime | egrep -o \'load average[s]*: [0-9,\\. ]+\' | awk -F\',\' \'{print $1$2$3}\' | awk -F\' \' \'{print $3,$4,$5}\'', 'RunCommand=uptime | egrep -o \'load average[s]*: [0-9,\\. ]+\' | awk -F\',\' \'{print $1$2$3}\' | awk -F\' \' \'{print $3,$4,$5}\'(21ms)\noutString=null\nerrString=null', '', '2017-08-30 18:29:25'),
-(16, 'GET', '/phpmyadmin', '', '[192.168.2.102]', 'ERRORPAGE', '網頁錯誤編號：404(/phpmyadmin)', '/phpmyadmin', '', '2017-08-30 18:31:20'),
-(17, '', '', '', '[]', 'RUNCOMMAND', 'RunCommand=uptime | egrep -o \'load average[s]*: [0-9,\\. ]+\' | awk -F\',\' \'{print $1$2$3}\' | awk -F\' \' \'{print $3,$4,$5}\'', 'RunCommand=uptime | egrep -o \'load average[s]*: [0-9,\\. ]+\' | awk -F\',\' \'{print $1$2$3}\' | awk -F\' \' \'{print $3,$4,$5}\'(12ms)\noutString=null\nerrString=null', '', '2017-08-30 18:39:25');
 
 -- --------------------------------------------------------
 
