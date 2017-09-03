@@ -32,5 +32,5 @@ RUN apk add --no-cache --virtual .native-build-deps git rsync apache-ant gcc g++
 COPY ROOT /usr/local/tomcat/webapps/ROOT
 COPY ZeroJudge_Server /usr/local/tomcat/webapps/ZeroJudge_Server
 
-EXPOSE 80 8080
+EXPOSE 80
 CMD ["docker-entrypoint.sh"]
