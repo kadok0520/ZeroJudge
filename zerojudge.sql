@@ -8,7 +8,7 @@
 -- PHP 版本： 7.0.22-0ubuntu0.16.04.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
+SET time_zone = "+08:00";
 
 
 --
