@@ -19,9 +19,13 @@ https://wiki.debian.org/LXC/
 1. pull image
 
 
-2. init mysql
+2. init mysql server by docker
 docker run --name mysql -e MYSQL_ROOT_PASSWORD=你的密碼 -p 3306:3306 -d mysql
 
-3.
+3. run
+
+
+4.
+http://your_docker_server:80
 
 
